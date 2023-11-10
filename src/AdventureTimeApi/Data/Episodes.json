@@ -1,0 +1,587 @@
+[
+    {
+        "id": 0,
+        "series_fk": 0,
+        "title": "Adventure Time",
+        "duration": "7 minutes",
+        "season_fk": 0,
+        "episode": 0,
+        "air_date": "January 11, 2007"
+    },
+    {
+        "id": 1,
+        "series_fk": 0,
+        "title": "Slumber Party Panic",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 1,
+        "air_date": "April 5, 2010"
+    },
+    {
+        "id": 2,
+        "series_fk": 0,
+        "title": "Trouble in Lumpy Space",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 2,
+        "air_date": "April 5, 2010"
+    },
+    {
+        "id": 3,
+        "series_fk": 0,
+        "title": "Prisoners of Love",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 3,
+        "air_date": "April 12, 2010"
+    },
+    {
+        "id": 4,
+        "series_fk": 0,
+        "title": "Tree Trunks",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 4,
+        "air_date": "April 12, 2010"
+    },
+    {
+        "id": 5,
+        "series_fk": 0,
+        "title": "The Enchiridion!",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 5,
+        "air_date": "April 19, 2010"
+    },
+    {
+        "id": 6,
+        "series_fk": 0,
+        "title": "The Jiggler",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 6,
+        "air_date": "April 19, 2010"
+    },
+    {
+        "id": 7,
+        "series_fk": 0,
+        "title": "Ricardio the Heart Guy",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 7,
+        "air_date": "April 26, 2010"
+    },
+    {
+        "id": 8,
+        "series_fk": 0,
+        "title": "Business Time",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 8,
+        "air_date": "April 26, 2010"
+    },
+    {
+        "id": 9,
+        "series_fk": 0,
+        "title": "My Two Favorite People",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 9,
+        "air_date": "May 3, 2010"
+    },
+    {
+        "id": 10,
+        "series_fk": 0,
+        "title": "Memories of Boom Boom Mountain",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 10,
+        "air_date": "May 3, 2010"
+    },
+    {
+        "id": 11,
+        "series_fk": 0,
+        "title": "Wizard",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 11,
+        "air_date": "May 10, 2010"
+    },
+    {
+        "id": 12,
+        "series_fk": 0,
+        "title": "Evicted!",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 12,
+        "air_date": "May 17, 2010"
+    },
+    {
+        "id": 13,
+        "series_fk": 0,
+        "title": "City of Thieves",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 13,
+        "air_date": "May 24, 2010"
+    },
+    {
+        "id": 14,
+        "series_fk": 0,
+        "title": "The Witch's Garden",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 14,
+        "air_date": "June 7, 2010"
+    },
+    {
+        "id": 15,
+        "series_fk": 0,
+        "title": "What Is Life?",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 15,
+        "air_date": "June 14, 2010"
+    },
+    {
+        "id": 16,
+        "series_fk": 0,
+        "title": "Ocean of Fear",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 16,
+        "air_date": "June 21, 2010"
+    },
+    {
+        "id": 17,
+        "series_fk": 0,
+        "title": "When Wedding Bells Thaw",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 17,
+        "air_date": "June 28, 2010"
+    },
+    {
+        "id": 18,
+        "series_fk": 0,
+        "title": "Dungeon",
+        "duration": "12 minutes",
+        "season_fk": 1,
+        "episode": 18,
+        "air_date": "July 12, 2010"
+    },
+    {
+        "id": 19,
+        "series_fk": 0,
+        "title": "The Duke",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 19,
+        "air_date": "July 19, 2010"
+    },
+    {
+        "id": 20,
+        "series_fk": 0,
+        "title": "Freak City",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 20,
+        "air_date": "July 26, 2010"
+    },
+    {
+        "id": 21,
+        "series_fk": 0,
+        "title": "Donny",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 21,
+        "air_date": "August 9, 2010"
+    },
+    {
+        "id": 22,
+        "series_fk": 0,
+        "title": "Henchman",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 22,
+        "air_date": "August 23, 2010"
+    },
+    {
+        "id": 23,
+        "series_fk": 0,
+        "title": "Rainy Day Daydream",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 23,
+        "air_date": "September 6, 2010"
+    },
+    {
+        "id": 24,
+        "series_fk": 0,
+        "title": "What Have You Done?",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 24,
+        "air_date": "September 13, 2010"
+    },
+    {
+        "id": 25,
+        "series_fk": 0,
+        "title": "His Hero",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 25,
+        "air_date": "September 20, 2010"
+    },
+    {
+        "id": 26,
+        "series_fk": 0,
+        "title": "Gut Grinder",
+        "duration": "11 minutes",
+        "season_fk": 1,
+        "episode": 26,
+        "air_date": "September 27, 2010"
+    },
+    {
+        "id": 27,
+        "series_fk": 0,
+        "title": "It Came from the Nightosphere",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 1,
+        "air_date": "October 11, 2010"
+    },
+    {
+        "id": 28,
+        "series_fk": 0,
+        "title": "The Eyes",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 2,
+        "air_date": "October 18, 2010"
+    },
+    {
+        "id": 29,
+        "series_fk": 0,
+        "title": "Loyalty to the King",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 3,
+        "air_date": "October 25, 2010"
+    },
+    {
+        "id": 30,
+        "series_fk": 0,
+        "title": "Blood Under the Skin",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 4,
+        "air_date": "November 1, 2010"
+    },
+    {
+        "id": 31,
+        "series_fk": 0,
+        "title": "Storytelling",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 5,
+        "air_date": "November 8, 2010"
+    },
+    {
+        "id": 32,
+        "series_fk": 0,
+        "title": "Slow Love",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 6,
+        "air_date": "November 15, 2010"
+    },
+    {
+        "id": 33,
+        "series_fk": 0,
+        "title": "Power Animal",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 7,
+        "air_date": "November 22, 2010"
+    },
+    {
+        "id": 34,
+        "series_fk": 0,
+        "title": "Crystals Have Power",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 8,
+        "air_date": "November 29, 2010"
+    },
+    {
+        "id": 35,
+        "series_fk": 0,
+        "title": "The Other Tarts",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 9,
+        "air_date": "January 3, 2011"
+    },
+    {
+        "id": 36,
+        "series_fk": 0,
+        "title": "To Cut a Woman's Hair",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 10,
+        "air_date": "January 10, 2011"
+    },
+    {
+        "id": 37,
+        "series_fk": 0,
+        "title": "The Chamber of Frozen Blades",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 11,
+        "air_date": "January 17, 2011"
+    },
+    {
+        "id": 38,
+        "series_fk": 0,
+        "title": "Her Parents",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 12,
+        "air_date": "January 24, 2011"
+    },
+    {
+        "id": 39,
+        "series_fk": 0,
+        "title": "The Pods",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 13,
+        "air_date": "January 31, 2011"
+    },
+    {
+        "id": 40,
+        "series_fk": 0,
+        "title": "The Silent King",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 14,
+        "air_date": "February 7, 2011"
+    },
+    {
+        "id": 41,
+        "series_fk": 0,
+        "title": "The Real You",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 15,
+        "air_date": "February 14, 2011"
+    },
+    {
+        "id": 42,
+        "series_fk": 0,
+        "title": "Guardians of Sunshine",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 16,
+        "air_date": "February 21, 2011"
+    },
+    {
+        "id": 43,
+        "series_fk": 0,
+        "title": "Death in Bloom",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 17,
+        "air_date": "February 28, 2011"
+    },
+    {
+        "id": 44,
+        "series_fk": 0,
+        "title": "Susan Strong",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 18,
+        "air_date": "March 7, 2011"
+    },
+    {
+        "id": 45,
+        "series_fk": 0,
+        "title": "Mystery Train",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 19,
+        "air_date": "March 14, 2011"
+    },
+    {
+        "id": 46,
+        "series_fk": 0,
+        "title": "Go with Me",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 20,
+        "air_date": "March 28, 2011"
+    },
+    {
+        "id": 47,
+        "series_fk": 0,
+        "title": "Belly of the Beast",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 21,
+        "air_date": "April 4, 2011"
+    },
+    {
+        "id": 48,
+        "series_fk": 0,
+        "title": "The Limit",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 22,
+        "air_date": "April 11, 2011"
+    },
+    {
+        "id": 49,
+        "series_fk": 0,
+        "title": "Video Makers",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 23,
+        "air_date": "April 18, 2011"
+    },
+    {
+        "id": 50,
+        "series_fk": 0,
+        "title": "Mortal Folly",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 24,
+        "air_date": "May 2, 2011"
+    },
+    {
+        "id": 51,
+        "series_fk": 0,
+        "title": "Mortal Recoil",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 25,
+        "air_date": "May 2, 2011"
+    },
+    {
+        "id": 52,
+        "series_fk": 0,
+        "title": "Heat Signature",
+        "duration": "11 minutes",
+        "season_fk": 2,
+        "episode": 26,
+        "air_date": "May 9, 2011"
+    },
+    {
+        "id": 283,
+        "series_fk": 1,
+        "title": "BMO",
+        "duration": "45 minutes",
+        "season_fk": 11,
+        "episode": 1,
+        "air_date": "June 25, 2020"
+    },
+    {
+        "id": 284,
+        "series_fk": 1,
+        "title": "Obsidian",
+        "duration": "45 minutes",
+        "season_fk": 11,
+        "episode": 2,
+        "air_date": "November 19, 2020"
+    },
+    {
+        "id": 285,
+        "series_fk": 1,
+        "title": "Together Again",
+        "duration": "46 minutes",
+        "season_fk": 11,
+        "episode": 3,
+        "air_date": "May 20, 2021"
+    },
+    {
+        "id": 286,
+        "series_fk": 1,
+        "title": "Wizard City",
+        "duration": "50 minutes",
+        "season_fk": 11,
+        "episode": 4,
+        "air_date": "September 2, 2021"
+    },
+    {
+        "id": 287,
+        "series_fk": 2,
+        "title": "Fionna Campbell",
+        "duration": "25 minutes",
+        "season_fk": 12,
+        "episode": 1,
+        "air_date": "August 31, 2023"
+    },
+    {
+        "id": 288,
+        "series_fk": 2,
+        "title": "Simon Petrikov",
+        "duration": "26 minutes",
+        "season_fk": 12,
+        "episode": 2,
+        "air_date": "August 31, 2023"
+    },
+    {
+        "id": 289,
+        "series_fk": 2,
+        "title": "Cake the Cat",
+        "duration": "23 minutes",
+        "season_fk": 12,
+        "episode": 3,
+        "air_date": "September 7, 2023"
+    },
+    {
+        "id": 290,
+        "series_fk": 2,
+        "title": "Prismo the Wishmaster",
+        "duration": "23 minutes",
+        "season_fk": 12,
+        "episode": 4,
+        "air_date": "September 7, 2023"
+    },
+    {
+        "id": 291,
+        "series_fk": 2,
+        "title": "Destiny",
+        "duration": "24 minutes",
+        "season_fk": 12,
+        "episode": 5,
+        "air_date": "September 14, 2023"
+    },
+    {
+        "id": 292,
+        "series_fk": 2,
+        "title": "The Winter King",
+        "duration": "24 minutes",
+        "season_fk": 12,
+        "episode": 6,
+        "air_date": "September 14, 2023"
+    },
+    {
+        "id": 293,
+        "series_fk": 2,
+        "title": "The Star",
+        "duration": "24 minutes",
+        "season_fk": 12,
+        "episode": 7,
+        "air_date": "September 21, 2023"
+    },
+    {
+        "id": 294,
+        "series_fk": 2,
+        "title": "Jerry",
+        "duration": "25 minutes",
+        "season_fk": 12,
+        "episode": 8,
+        "air_date": "September 21, 2023"
+    }
+]

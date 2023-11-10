@@ -1,0 +1,12 @@
+{
+    "editor.formatOnSave": true,
+    "[csharp]": {
+        "editor.formatOnSave": true
+    },
+    "cSpell.words": [
+        "Hsts",
+        "Marceline",
+        "Rainicorn",
+        "Xunit"
+    ]
+}

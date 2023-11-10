@@ -1,0 +1,62 @@
+[
+    {
+        "id": 0,
+        "name": "Deities and Cosmic Entities"
+    },
+    {
+        "id": 1,
+        "name": "Elementals"
+    },
+    {
+        "id": 2,
+        "name": "Humans"
+    },
+    {
+        "id": 3,
+        "name": "Pups"
+    },
+    {
+        "id": 4,
+        "name": "Wizards"
+    },
+    {
+        "id": 5,
+        "name": "Vampires"
+    },
+    {
+        "id": 6,
+        "name": "Gum People"
+    },
+    {
+        "id": 7,
+        "name": "Candy People"
+    },
+    {
+        "id": 8,
+        "name": "MOs"
+    },
+    {
+        "id": 9,
+        "name": "Dog"
+    },
+    {
+        "id": 10,
+        "name": "Shape-shifter"
+    },
+    {
+        "id": 11,
+        "name": "Demons"
+    },
+    {
+        "id": 12,
+        "name": "Lumps Anti-Elemental"
+    },
+    {
+        "id": 13,
+        "name": "Rainicorn"
+    },
+    {
+        "id": 14,
+        "name": "Primordial Monsters"
+    }
+]

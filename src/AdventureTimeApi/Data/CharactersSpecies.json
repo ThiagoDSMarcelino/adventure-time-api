@@ -1,0 +1,62 @@
+[
+    {
+        "id": 0,
+        "character_fk": 0,
+        "specie_fk": 2
+    },
+    {
+        "id": 1,
+        "character_fk": 1,
+        "specie_fk": 9
+    },
+    {
+        "id": 2,
+        "character_fk": 1,
+        "specie_fk": 10
+    },
+    {
+        "id": 3,
+        "character_fk": 2,
+        "specie_fk": 6
+    },
+    {
+        "id": 4,
+        "character_fk": 2,
+        "specie_fk": 1
+    },
+    {
+        "id": 5,
+        "character_fk": 3,
+        "specie_fk": 2
+    },
+    {
+        "id": 6,
+        "character_fk": 4,
+        "specie_fk": 8
+    },
+    {
+        "id": 7,
+        "character_fk": 5,
+        "specie_fk": 2
+    },
+    {
+        "id": 8,
+        "character_fk": 5,
+        "specie_fk": 5
+    },
+    {
+        "id": 9,
+        "character_fk": 5,
+        "specie_fk": 11
+    },
+    {
+        "id": 10,
+        "character_fk": 6,
+        "specie_fk": 12
+    },
+    {
+        "id": 11,
+        "character_fk": 7,
+        "specie_fk": 13
+    }
+]

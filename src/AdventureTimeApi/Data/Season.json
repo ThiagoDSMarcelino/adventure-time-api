@@ -1,0 +1,67 @@
+[
+    {
+        "id": 0,
+        "series_fk": 0,
+        "season": 0
+    },
+    {
+        "id": 1,
+        "series_fk": 0,
+        "season": 1
+    },
+    {
+        "id": 2,
+        "series_fk": 0,
+        "season": 2
+    },
+    {
+        "id": 3,
+        "series_fk": 0,
+        "season": 3
+    },
+    {
+        "id": 4,
+        "series_fk": 0,
+        "season": 4
+    },
+    {
+        "id": 5,
+        "series_fk": 0,
+        "season": 5
+    },
+    {
+        "id": 6,
+        "series_fk": 0,
+        "season": 6
+    },
+    {
+        "id": 7,
+        "series_fk": 0,
+        "season": 7
+    },
+    {
+        "id": 8,
+        "series_fk": 0,
+        "season": 8
+    },
+    {
+        "id": 9,
+        "series_fk": 0,
+        "season": 9
+    },
+    {
+        "id": 10,
+        "series_fk": 0,
+        "season": 10
+    },
+    {
+        "id": 11,
+        "series_fk": 1,
+        "season": 1
+    },
+    {
+        "id": 12,
+        "series_fk": 2,
+        "season": 1
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "name": "Finn",
+        "gender_fk": 0
+    },
+    {
+        "id": 1,
+        "name": "Jake",
+        "gender_fk": 0
+    },
+    {
+        "id": 2,
+        "name": "Princess Bubblegum",
+        "gender_fk": 1
+    },
+    {
+        "id": 3,
+        "name": "Ice King",
+        "gender_fk": 0
+    },
+    {
+        "id": 4,
+        "name": "BMO",
+        "gender_fk": 2
+    },
+    {
+        "id": 5,
+        "name": "Marceline",
+        "gender_fk": 1
+    },
+    {
+        "id": 6,
+        "name": "Lumpy Space Princess",
+        "gender_fk": 1
+    },
+    {
+        "id": 7,
+        "name": "Lady Rainicorn",
+        "gender_fk": 1
+    }
+]
