@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
+using System.Net.Http.Json;
+using AdventureTimeApi.Models;
+using System.Collections.Generic;
 
 namespace AdventureTimeApi.Tests;
 
-public class UnitTest1
+public class TestCharactersRoutes
 {
     [Fact]
     public async Task GetCharacters_ReturnsCorrectResponse()
@@ -13,8 +16,12 @@ public class UnitTest1
             .UseStartup<Startup>())
             .CreateClient();
 
-        var response = await client.GetAsync("/");
+        var response = await client.GetAsync("api/characters/");
 
         response.EnsureSuccessStatusCode();
+
+        var characters = await response.Content.ReadFromJsonAsync<List<Character>>();
+
+        Assert.NotNull(characters);
     }
 }

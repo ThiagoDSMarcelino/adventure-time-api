@@ -1,15 +1,12 @@
 using System.Text.Json.Serialization;
 
-namespace AdventureTimeApi.Models;
+namespace AdventureTimeApi.Models.Genders;
 
-public record Character
+public record Gender()
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
-    
+
     [JsonPropertyName("name")]
     public required string Name { get; set; }
-
-    [JsonPropertyName("gender_dk")]
-    public int GenderFK { get; set; }
 }
