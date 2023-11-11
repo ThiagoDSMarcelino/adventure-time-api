@@ -1,6 +1,7 @@
-using AdventureTimeApi;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+
+namespace AdventureTimeApi;
 
 public class Program
 {

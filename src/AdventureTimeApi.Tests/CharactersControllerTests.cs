@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
 using System.Net.Http.Json;
-using AdventureTimeApi.Models;
 using System.Collections.Generic;
+using AdventureTimeApi.Models.Characters;
 
 namespace AdventureTimeApi.Tests;
 
@@ -20,7 +20,7 @@ public class TestCharactersRoutes
 
         response.EnsureSuccessStatusCode();
 
-        var characters = await response.Content.ReadFromJsonAsync<List<Character>>();
+        var characters = await response.Content.ReadFromJsonAsync<List<CharacterDTO>>();
 
         Assert.NotNull(characters);
     }
