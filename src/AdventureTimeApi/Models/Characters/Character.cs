@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace AdventureTimeApi.Models.Characters;
 
-public record Character
+public record Character : Model
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
@@ -10,6 +10,6 @@ public record Character
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
-    [JsonPropertyName("gender_dk")]
+    [JsonPropertyName("gender_fk")]
     public int GenderFK { get; set; }
 }
