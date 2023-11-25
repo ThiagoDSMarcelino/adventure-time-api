@@ -15,40 +15,39 @@ public class CharactersService : ICharactersRepository
 {
     public async Task<IEnumerable<CharacterDTO>> GetCharactersAsync(string? gender, string? specie)
     {
-        var characters = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
-        var genders = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
-        var charactersSpecies = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
-        var species = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
+        var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
+        var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
+        var gendersData = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
+        var speciesData = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
 
-        var data = characters.Select(c =>
-        {
-            var characterGender = genders.First(g => g.Id == c.GenderFK).Name;
+        if (gender is not null && !gendersData.Any(g => Util.CompareIgnoreCase(g.Name, gender)))
+            throw new InvalidGenderException(gender);
 
-            var characterSpecies = charactersSpecies
-                .Where(cs => cs.CharacterFK == c.Id)
-                .Select(cs => species.First(s => s.Id == cs.SpecieFK).Name)
-                .ToList();
-
-            return new CharacterDTO(c.Name, characterGender, characterSpecies);
-        });
+        if (specie is not null && !speciesData.Any(s => Util.CompareIgnoreCase(s.Name, specie)))
+            throw new InvalidGenderException(specie);
 
         if (gender is not null)
         {
-            // Checks if the gender exists
-            if (!genders.Any(g => Util.CompareIgnoreCase(g.Name, gender)))
-                throw new InvalidGenderException(gender);
-
-            data = data.Where(c => Util.CompareIgnoreCase(c.Gender, gender));
+            var genderId = gendersData.First(g => Util.CompareIgnoreCase(g.Name, gender)).Id;
+            charactersData.RemoveAll(c => c.GenderFK != genderId);
         }
 
-        if (specie is not null)
-        {
-            // Checks if the specie exists
-            if (!species.Any(s => Util.CompareIgnoreCase(s.Name, specie)))
-                throw new InvalidSpecieException(specie);
+        var data = charactersData
+            .Select(c =>
+            {
+                var characterGender = gendersData.First(g => g.Id == c.GenderFK).Name;
 
-            data = data.Where(c => c.Species.Any(s => Util.CompareIgnoreCase(s, specie)));
-        }
+                var characterSpecies = charactersSpeciesData
+                    .Where(cs => cs.CharacterFK == c.Id)
+                    .Select(cs => speciesData.First(s => s.Id == cs.SpecieFK).Name)
+                    .ToList();
+
+                return new CharacterDTO(c.Name, characterGender, characterSpecies);
+            });
+
+        data = data
+            .Where(c => specie is null || c.Species.Any(s => Util.CompareIgnoreCase(s, specie)))
+            .OrderBy(c => c.Name);
 
         return data;
     }

@@ -5,6 +5,8 @@ using System.Net.Http.Json;
 using System.Collections.Generic;
 using System.Net;
 using AdventureTimeApi.DTOs;
+using System;
+using System.Linq;
 
 namespace AdventureTimeApi.Tests;
 
@@ -69,7 +71,7 @@ public class TestCharactersRoutes
         var characters = await response.Content.ReadFromJsonAsync<List<CharacterDTO>>();
 
         Assert.NotNull(characters);
-        Assert.All(characters, c => c.Species.Contains("Demons"));
+        Assert.All(characters, c => Assert.Contains("demons", c.Species, StringComparer.OrdinalIgnoreCase));
     }
 
     [Fact]
