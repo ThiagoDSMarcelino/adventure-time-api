@@ -1,6 +1,6 @@
 using AdventureTimeApi.Interfaces;
-using AdventureTimeApi.Models.Characters;
 using AdventureTimeApi.Errors;
+using AdventureTimeApi.DTOs;
 
 using System;
 using System.Collections.Generic;
@@ -25,17 +25,21 @@ public class CharactersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<CharacterDTO>>> Get([FromQuery] string? gender)
+    public async Task<ActionResult<IEnumerable<CharacterDTO>>> Get([FromQuery] string? gender, [FromQuery] string? specie)
     {
         try
         {
-            var characters = await characterRepository.GetCharactersAsync(gender);
+            var characters = await characterRepository.GetCharactersAsync(gender, specie);
 
             logger.LogInformation("Successful operation");
 
             return Ok(characters);
         }
         catch (InvalidGenderException e)
+        {
+            return StatusCode(404, e.Message);
+        }
+        catch (InvalidSpecieException e)
         {
             return StatusCode(404, e.Message);
         }

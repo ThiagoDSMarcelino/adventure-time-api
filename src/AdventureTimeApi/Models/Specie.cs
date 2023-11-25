@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace AdventureTimeApi.Models;
 
-public record Gender()
+public record Specie
 {
     [JsonPropertyName("id")]
     public uint Id { get; set; }

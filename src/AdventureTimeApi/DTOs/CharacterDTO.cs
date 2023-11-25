@@ -1,14 +1,7 @@
-using AdventureTimeApi.Interfaces;
+using System.Collections.Generic;
 
-namespace AdventureTimeApi.Models.Characters;
+namespace AdventureTimeApi.DTOs;
 
-public record CharacterDTO(string Name, string Gender)
+public record CharacterDTO(string Name, string Gender, List<string> Species)
 {
-    public static CharacterDTO Convert(Character character, string gender)
-        => new(character.Name, gender);
-
-    public CharacterDTO Convert(Character obj)
-    {
-        throw new System.NotImplementedException();
-    }
 }
