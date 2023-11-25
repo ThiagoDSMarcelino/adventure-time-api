@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+
 using AdventureTimeApi.Config;
 using AdventureTimeApi.Errors;
 using AdventureTimeApi.Interfaces;
@@ -14,20 +15,29 @@ namespace AdventureTimeApi.Services;
 
 public class CharactersService : ICharactersRepository
 {
-    public async Task<IEnumerable<CharacterDTO>> GetCharactersAsync()
+    public async Task<IEnumerable<CharacterDTO>> GetCharactersAsync(string? gender)
     {
         using FileStream charactersStream = File.OpenRead(Constants.CHARACTER_FILE_PATH);
         var characters = await JsonSerializer.DeserializeAsync<List<Character>>(charactersStream) ?? throw new LoadModelException(typeof(Character));
 
         using FileStream gendersStream = File.OpenRead(Constants.GENDER_FILE_PATH);
-        var genders = await JsonSerializer.DeserializeAsync<List<Gender>>(gendersStream) ?? throw new LoadModelException();
+        var genders = await JsonSerializer.DeserializeAsync<List<Gender>>(gendersStream) ?? throw new LoadModelException(typeof(Gender));
 
-        var dto = characters.Select(c =>
+        var data = characters.Select(c =>
         {
-            var gender = genders.First(g => g.Id == c.GenderFK).Name;
-            return CharacterDTO.Convert(c, gender);
+            var characterGender = genders.First(g => g.Id == c.GenderFK).Name;
+            return CharacterDTO.Convert(c, characterGender);
         });
 
-        return dto;
+        if (gender is not null)
+        {
+            // Checks if the gender exists
+            if (!genders.Any(g => string.Equals(g.Name, gender, StringComparison.OrdinalIgnoreCase)))
+                throw new InvalidGenderException(gender);
+
+            return data.Where(c => string.Equals(c.Gender, gender, StringComparison.OrdinalIgnoreCase));
+        }
+
+        return data;
     }
 }

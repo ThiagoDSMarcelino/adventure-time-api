@@ -7,8 +7,12 @@ namespace AdventureTimeApi.Errors;
 /// </summary>
 public class LoadModelException : Exception
 {
-    public LoadModelException(Model model)
-        : base($"Error loading {model.GetType().Name} data.")
+    public LoadModelException(Type modelName)
+        : base($"Error loading {nameof(modelName)} data.")
     {
+        if (modelName is null)
+        {
+            throw new ArgumentNullException(nameof(modelName));
+        }
     }
 }

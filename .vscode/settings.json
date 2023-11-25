@@ -4,9 +4,8 @@
         "editor.formatOnSave": true
     },
     "cSpell.words": [
+        "ASPNETCORE",
         "Hsts",
-        "Marceline",
-        "Rainicorn",
         "Xunit"
-    ]
+    ],
 }
