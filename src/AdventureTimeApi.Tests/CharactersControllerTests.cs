@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
 using System.Net.Http.Json;
 using System.Collections.Generic;
-using AdventureTimeApi.Models.Characters;
 using System.Net;
+using AdventureTimeApi.DTOs;
 
 namespace AdventureTimeApi.Tests;
 
@@ -51,6 +51,35 @@ public class TestCharactersRoutes
             .CreateClient();
 
         var response = await client.GetAsync("api/characters?gender=invalidGender");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetCharactersBySpecie_ReturnsCorrectResponse()
+    {
+        var client = new TestServer(new WebHostBuilder()
+            .UseStartup<Startup>())
+            .CreateClient();
+
+        var response = await client.GetAsync("api/characters?specie=demons");
+
+        response.EnsureSuccessStatusCode();
+
+        var characters = await response.Content.ReadFromJsonAsync<List<CharacterDTO>>();
+
+        Assert.NotNull(characters);
+        Assert.All(characters, c => c.Species.Contains("Demons"));
+    }
+
+    [Fact]
+    public async Task GetCharactersBySpecie_ReturnsErrorMessage()
+    {
+        var client = new TestServer(new WebHostBuilder()
+            .UseStartup<Startup>())
+            .CreateClient();
+
+        var response = await client.GetAsync("api/characters?specie=invalidSpecie");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }

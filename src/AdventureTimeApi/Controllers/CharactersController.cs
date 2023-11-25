@@ -13,6 +13,7 @@ namespace AdventureTimeApi.Controllers;
 
 [ApiController]
 [Route("api/characters/")]
+[Produces("application/json")]
 public class CharactersController : ControllerBase
 {
     private readonly ILogger<CharactersController> logger;
