@@ -6,19 +6,23 @@ using System.Collections.Generic;
 using System.Net;
 using AdventureTimeApi.DTOs;
 using System;
-using System.Linq;
+using System.Net.Http;
 
 namespace AdventureTimeApi.Tests;
 
-public class TestCharactersRoutes
+public class TestCharactersController
 {
-    [Fact]
-    public async Task GetCharacters_ReturnsCorrectResponse()
+    private readonly HttpClient client;
+    public TestCharactersController()
     {
-        var client = new TestServer(new WebHostBuilder()
+        client = new TestServer(new WebHostBuilder()
             .UseStartup<Startup>())
             .CreateClient();
+    }
 
+    [Fact]
+    public async Task GetAllCharacters_ReturnsCorrectResponse()
+    {
         var response = await client.GetAsync("api/characters");
 
         response.EnsureSuccessStatusCode();
@@ -26,15 +30,54 @@ public class TestCharactersRoutes
         var characters = await response.Content.ReadFromJsonAsync<List<CharacterDTO>>();
 
         Assert.NotNull(characters);
+        Assert.NotEmpty(characters);
     }
 
     [Fact]
-    public async Task GetCharactersByGender_ReturnsCorrectResponse()
+    public async Task GetCharacterById_ReturnsCorrectResponse()
     {
-        var client = new TestServer(new WebHostBuilder()
-            .UseStartup<Startup>())
-            .CreateClient();
+        var response = await client.GetAsync("api/characters/1");
 
+        response.EnsureSuccessStatusCode();
+
+        var character = await response.Content.ReadFromJsonAsync<CharacterDTO>();
+
+        Assert.NotNull(character);
+        Assert.Equal<uint>(1, character.Id);
+    }
+
+    [Fact]
+    public async Task GetCharacterById_ReturnsNotFoundForInvalidId()
+    {
+        var response = await client.GetAsync("api/characters/9999");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task SearchCharacters_ReturnsCorrectResponse()
+    {
+        var response = await client.GetAsync("api/characters/search/Finn");
+
+        response.EnsureSuccessStatusCode();
+
+        var characters = await response.Content.ReadFromJsonAsync<List<CharacterDTO>>();
+
+        Assert.NotNull(characters);
+        Assert.All(characters, c => Assert.Contains("Finn", c.Name, StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public async Task SearchCharacters_ReturnsNotFoundForInvalidName()
+    {
+        var response = await client.GetAsync("api/characters/search/InvalidName");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetCharactersByGender_ReturnsOnlyMaleCharacters()
+    {
         var response = await client.GetAsync("api/characters?gender=male");
 
         response.EnsureSuccessStatusCode();
@@ -46,24 +89,16 @@ public class TestCharactersRoutes
     }
 
     [Fact]
-    public async Task GetCharactersByGender_ReturnsErrorMessage()
+    public async Task GetCharactersByInvalidGender_ReturnsNotFound()
     {
-        var client = new TestServer(new WebHostBuilder()
-            .UseStartup<Startup>())
-            .CreateClient();
-
         var response = await client.GetAsync("api/characters?gender=invalidGender");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
     [Fact]
-    public async Task GetCharactersBySpecie_ReturnsCorrectResponse()
+    public async Task GetCharactersBySpecie_ReturnsOnlyDemonsCharacters()
     {
-        var client = new TestServer(new WebHostBuilder()
-            .UseStartup<Startup>())
-            .CreateClient();
-
         var response = await client.GetAsync("api/characters?specie=demons");
 
         response.EnsureSuccessStatusCode();
@@ -75,12 +110,8 @@ public class TestCharactersRoutes
     }
 
     [Fact]
-    public async Task GetCharactersBySpecie_ReturnsErrorMessage()
+    public async Task GetCharactersByInvalidSpecie_ReturnsNotFound()
     {
-        var client = new TestServer(new WebHostBuilder()
-            .UseStartup<Startup>())
-            .CreateClient();
-
         var response = await client.GetAsync("api/characters?specie=invalidSpecie");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);

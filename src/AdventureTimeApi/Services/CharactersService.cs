@@ -13,7 +13,20 @@ namespace AdventureTimeApi.Services;
 
 public class CharactersService : ICharactersRepository
 {
-    public async Task<IEnumerable<CharacterDTO>> GetCharactersAsync(string? gender, string? specie)
+    public async Task<CharacterDTO> GetAsync(uint id)
+    {
+        var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
+        var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
+        var gendersData = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
+        var speciesData = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
+
+        var character = charactersData.FirstOrDefault(c => c.Id == id) ?? throw new InvalidCharacterIdException(id);
+        var dto = new CharacterDTO(character, gendersData, charactersSpeciesData, speciesData);
+
+        return dto;
+    }
+
+    public async Task<List<CharacterDTO>> ListAsync(string? gender, string? specie)
     {
         var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
         var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
@@ -32,34 +45,33 @@ public class CharactersService : ICharactersRepository
             charactersData.RemoveAll(c => c.GenderFK != genderId);
         }
 
-        var data = charactersData
-            .Select(c =>
-            {
-                var characterGender = gendersData.First(g => g.Id == c.GenderFK).Name;
+        var data = charactersData.Select(c => new CharacterDTO(c, gendersData, charactersSpeciesData, speciesData));
 
-                var characterSpecies = charactersSpeciesData
-                    .Where(cs => cs.CharacterFK == c.Id)
-                    .Select(cs => speciesData.First(s => s.Id == cs.SpecieFK).Name)
-                    .ToList();
-
-                return new CharacterDTO(c.Name, characterGender, characterSpecies);
-            });
-
-        var characterDTOs = data
+        var dto = data
             .Where(c => specie is null || c.Species.Any(s => Util.CompareIgnoreCase(s, specie)))
             .OrderBy(c => c.Name)
             .ToList();
 
-        return characterDTOs;
+        return dto;
     }
 
-    public Task<CharacterDTO> GetCharacterByIdAsync(int id)
+    public async Task<List<CharacterDTO>> SearchAsync(string name)
     {
-        throw new System.NotImplementedException();
-    }
+        var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
+        var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
+        var gendersData = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
+        var speciesData = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
 
-    public Task<CharacterDTO> GetCharacterByNameAsync(string name)
-    {
-        throw new System.NotImplementedException();
+        var characters = charactersData
+            .Where(c => c.Name.Split(" ").Any(n => Util.CompareIgnoreCase(n, name)));
+        
+        if (!characters.Any())
+            throw new InvalidCharacterNameException(name);
+
+        var dto = characters
+            .Select(c => new CharacterDTO(c, gendersData, charactersSpeciesData, speciesData))
+            .ToList();
+
+        return dto;
     }
 }
