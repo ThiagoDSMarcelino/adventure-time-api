@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AdventureTimeApi.Config;
 using AdventureTimeApi.DTOs;
 using AdventureTimeApi.Errors;
-using AdventureTimeApi.Interfaces;
+using AdventureTimeApi.Repositories;
 using AdventureTimeApi.Models;
 using AdventureTimeApi.Shared;
 
@@ -45,10 +45,21 @@ public class CharactersService : ICharactersRepository
                 return new CharacterDTO(c.Name, characterGender, characterSpecies);
             });
 
-        data = data
+        var characterDTOs = data
             .Where(c => specie is null || c.Species.Any(s => Util.CompareIgnoreCase(s, specie)))
-            .OrderBy(c => c.Name);
+            .OrderBy(c => c.Name)
+            .ToList();
 
-        return data;
+        return characterDTOs;
+    }
+
+    public Task<CharacterDTO> GetCharacterByIdAsync(int id)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public Task<CharacterDTO> GetCharacterByNameAsync(string name)
+    {
+        throw new System.NotImplementedException();
     }
 }

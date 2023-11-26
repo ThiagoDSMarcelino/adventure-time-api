@@ -1,4 +1,4 @@
-using AdventureTimeApi.Interfaces;
+using AdventureTimeApi.Repositories;
 using AdventureTimeApi.Errors;
 using AdventureTimeApi.DTOs;
 
@@ -46,12 +46,12 @@ public class CharactersController : ControllerBase
         }
         catch (LoadModelException)
         {
-            logger.LogError("Error during model loading");
+            logger.LogError("Error during model loading for CharactersController.Get");
             return StatusCode(500, "Look like the server is having some problems, try again later");
         }
         catch (Exception e)
         {
-            logger.LogError(e, "Error during action execution");
+            logger.LogError(e, "Unhandled exception at CharactersController.Get");
             return StatusCode(500, "Internal Server Error");
         }
     }

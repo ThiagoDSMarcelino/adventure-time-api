@@ -1,4 +1,4 @@
-using AdventureTimeApi.Interfaces;
+using AdventureTimeApi.Repositories;
 using AdventureTimeApi.Services;
 
 using Microsoft.AspNetCore.Builder;
