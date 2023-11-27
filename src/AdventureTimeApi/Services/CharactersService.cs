@@ -33,14 +33,14 @@ public class CharactersService : ICharactersRepository
         var gendersData = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
         var speciesData = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
 
-        if (gender is not null && !gendersData.Any(g => Util.CompareIgnoreCase(g.Name, gender)))
-            throw new InvalidGenderException(gender);
-
         if (specie is not null && !speciesData.Any(s => Util.CompareIgnoreCase(s.Name, specie)))
             throw new InvalidGenderException(specie);
 
         if (gender is not null)
         {
+            if (!gendersData.Any(g => Util.CompareIgnoreCase(g.Name, gender)))
+                throw new InvalidGenderException(gender);
+
             var genderId = gendersData.First(g => Util.CompareIgnoreCase(g.Name, gender)).Id;
             charactersData.RemoveAll(c => c.GenderFK != genderId);
         }
@@ -64,7 +64,7 @@ public class CharactersService : ICharactersRepository
 
         var characters = charactersData
             .Where(c => c.Name.Split(" ").Any(n => Util.CompareIgnoreCase(n, name)));
-        
+
         if (!characters.Any())
             throw new InvalidCharacterNameException(name);
 
