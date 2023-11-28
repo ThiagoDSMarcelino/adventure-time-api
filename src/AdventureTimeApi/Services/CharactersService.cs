@@ -13,12 +13,19 @@ namespace AdventureTimeApi.Services;
 
 public class CharactersService : ICharactersRepository
 {
-    public async Task<CharacterDTO> GetAsync(uint id)
+    private async Task<(List<Character> charactersData, List<Gender> gendersData, List<CharacterSpecie> charactersSpeciesData, List<Specie> speciesData)> LoadData()
     {
         var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
         var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
         var gendersData = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
         var speciesData = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
+
+        return (charactersData, gendersData, charactersSpeciesData, speciesData);
+    }
+
+    public async Task<CharacterDTO> GetAsync(uint id)
+    {
+        var (charactersData, gendersData, charactersSpeciesData, speciesData) = await LoadData();
 
         var character = charactersData.FirstOrDefault(c => c.Id == id) ?? throw new InvalidCharacterIdException(id);
         var dto = new CharacterDTO(character, gendersData, charactersSpeciesData, speciesData);
@@ -28,13 +35,10 @@ public class CharactersService : ICharactersRepository
 
     public async Task<List<CharacterDTO>> ListAsync(string? gender, string? specie)
     {
-        var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
-        var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
-        var gendersData = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
-        var speciesData = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
+        var (charactersData, gendersData, charactersSpeciesData, speciesData) = await LoadData();
 
         if (specie is not null && !speciesData.Any(s => Util.CompareIgnoreCase(s.Name, specie)))
-            throw new InvalidGenderException(specie);
+            throw new InvalidSpecieException(specie);
 
         if (gender is not null)
         {
@@ -57,10 +61,7 @@ public class CharactersService : ICharactersRepository
 
     public async Task<List<CharacterDTO>> SearchAsync(string name)
     {
-        var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
-        var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
-        var gendersData = await Util.GetFilePathAsync<Gender>(Constants.GENDERS_FILE_PATH);
-        var speciesData = await Util.GetFilePathAsync<Specie>(Constants.SPECIES_FILE_PATH);
+        var (charactersData, gendersData, charactersSpeciesData, speciesData) = await LoadData();
 
         var characters = charactersData
             .Where(c => c.Name.Split(" ").Any(n => Util.CompareIgnoreCase(n, name)));

@@ -16,13 +16,13 @@ namespace AdventureTimeApi.Controllers;
 [Produces("application/json")]
 public class CharactersController : ControllerBase
 {
-    private readonly ILogger<CharactersController> logger;
-    private readonly ICharactersRepository characterRepository;
+    private readonly ILogger<CharactersController> _logger;
+    private readonly ICharactersRepository _characterRepository;
 
     public CharactersController(ILogger<CharactersController> logger, ICharactersRepository characterRepository)
     {
-        this.logger = logger;
-        this.characterRepository = characterRepository;
+        _logger = logger;
+        _characterRepository = characterRepository;
     }
 
     [HttpGet]
@@ -30,9 +30,9 @@ public class CharactersController : ControllerBase
     {
         try
         {
-            var characters = await characterRepository.ListAsync(gender, specie);
+            var characters = await _characterRepository.ListAsync(gender, specie);
 
-            logger.LogInformation("Successful operation");
+            _logger.LogInformation("Successful operation");
 
             return Ok(characters);
         }
@@ -44,26 +44,30 @@ public class CharactersController : ControllerBase
         {
             return NotFound(e.Message);
         }
-        catch (LoadModelException)
+        catch (LoadModelException e)
         {
-            logger.LogError("Error during model loading for CharactersController.Get");
+            _logger.LogError($"""
+                Error during model loading: {e.Message}
+                For CharactersController.Get route
+                """);
+
             return StatusCode(500, "Looks like the server is having some problems; try again later.");
         }
         catch (Exception e)
         {
-            logger.LogError(e, "Unhandled exception at CharactersController.Get");
+            _logger.LogError(e, "Unhandled exception at CharactersController.Get");
             return StatusCode(500, "Internal Server Error");
         }
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<CharacterDTO>> Get(uint id)
+    public async Task<ActionResult<CharacterDTO>> GetById(uint id)
     {
         try
         {
-            var character = await characterRepository.GetAsync(id);
+            var character = await _characterRepository.GetAsync(id);
 
-            logger.LogInformation("Successful operation");
+            _logger.LogInformation("Successful operation");
 
             return Ok(character);
         }
@@ -71,14 +75,17 @@ public class CharactersController : ControllerBase
         {
             return NotFound(e.Message);
         }
-        catch (LoadModelException)
+        catch (LoadModelException e)
         {
-            logger.LogError("Error during model loading for CharactersController.Get");
+            _logger.LogError($"""
+                Error during model loading: {e.Message}
+                For CharactersController.GetById route
+                """);
             return StatusCode(500, "Looks like the server is having some problems; try again later.");
         }
         catch (Exception e)
         {
-            logger.LogError(e, "Unhandled exception at CharactersController.Get");
+            _logger.LogError(e, "Unhandled exception at CharactersController.Get");
             return StatusCode(500, "Internal Server Error");
         }
     }
@@ -88,9 +95,9 @@ public class CharactersController : ControllerBase
     {
         try
         {
-            var characters = await characterRepository.SearchAsync(name);
+            var characters = await _characterRepository.SearchAsync(name);
 
-            logger.LogInformation("Successful operation");
+            _logger.LogInformation("Successful operation");
 
             return Ok(characters);
         }
@@ -98,14 +105,17 @@ public class CharactersController : ControllerBase
         {
             return NotFound(e.Message);
         }
-        catch (LoadModelException)
+        catch (LoadModelException e)
         {
-            logger.LogError("Error during model loading for CharactersController.Search");
+            _logger.LogError($"""
+                Error during model loading: {e.Message}
+                For CharactersController.Search route
+                """);
             return StatusCode(500, "Looks like the server is having some problems; try again later.");
         }
         catch (Exception e)
         {
-            logger.LogError(e, "Unhandled exception at CharactersController.Search");
+            _logger.LogError(e, "Unhandled exception at CharactersController.Search");
             return StatusCode(500, "Internal Server Error");
         }
     }
