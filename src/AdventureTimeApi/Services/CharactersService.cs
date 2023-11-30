@@ -13,7 +13,7 @@ namespace AdventureTimeApi.Services;
 
 public class CharactersService : ICharactersRepository
 {
-    private async Task<(List<Character> charactersData, List<Gender> gendersData, List<CharacterSpecie> charactersSpeciesData, List<Specie> speciesData)> LoadData()
+    private static async Task<(List<Character> charactersData, List<Gender> gendersData, List<CharacterSpecie> charactersSpeciesData, List<Specie> speciesData)> LoadData()
     {
         var charactersSpeciesData = await Util.GetFilePathAsync<CharacterSpecie>(Constants.CHARACTERS_SPECIES_FILE_PATH);
         var charactersData = await Util.GetFilePathAsync<Character>(Constants.CHARACTERS_FILE_PATH);
@@ -33,7 +33,7 @@ public class CharactersService : ICharactersRepository
         return dto;
     }
 
-    public async Task<List<CharacterDTO>> ListAsync(string? gender, string? specie)
+    public async Task<List<CharacterDTO>> ListAsync(string? gender, string? specie, string sort)
     {
         var (charactersData, gendersData, charactersSpeciesData, speciesData) = await LoadData();
 
@@ -51,12 +51,15 @@ public class CharactersService : ICharactersRepository
 
         var data = charactersData.Select(c => new CharacterDTO(c, gendersData, charactersSpeciesData, speciesData));
 
-        var dto = data
-            .Where(c => specie is null || c.Species.Any(s => Util.CompareIgnoreCase(s, specie)))
-            .OrderBy(c => c.Name)
-            .ToList();
+        var dto = data.Where(c => specie is null || c.Species.Any(s => Util.CompareIgnoreCase(s, specie)));
 
-        return dto;
+        dto = sort switch
+        {
+            "id" => dto.OrderBy(c => c.Id),
+            _ => dto.OrderBy(c => c.Name),
+        };
+
+        return dto.ToList();
     }
 
     public async Task<List<CharacterDTO>> SearchAsync(string name)

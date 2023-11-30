@@ -26,13 +26,11 @@ public class CharactersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<CharacterDTO>>> Get([FromQuery] string? gender, [FromQuery] string? specie)
+    public async Task<ActionResult<List<CharacterDTO>>> Get([FromQuery] string? gender, [FromQuery] string? specie, [FromQuery] string sort = "name")
     {
         try
         {
-            var characters = await _characterRepository.ListAsync(gender, specie);
-
-            _logger.LogInformation("Successful operation");
+            var characters = await _characterRepository.ListAsync(gender, specie, sort);
 
             return Ok(characters);
         }
@@ -46,10 +44,7 @@ public class CharactersController : ControllerBase
         }
         catch (LoadModelException e)
         {
-            _logger.LogError($"""
-                Error during model loading: {e.Message}
-                For CharactersController.Get route
-                """);
+            _logger.LogError("Error during model loading: {ErrorMessage}. Route: CharactersController.Get", e.Message);
 
             return StatusCode(500, "Looks like the server is having some problems; try again later.");
         }
@@ -67,8 +62,6 @@ public class CharactersController : ControllerBase
         {
             var character = await _characterRepository.GetAsync(id);
 
-            _logger.LogInformation("Successful operation");
-
             return Ok(character);
         }
         catch (InvalidCharacterIdException e)
@@ -77,10 +70,7 @@ public class CharactersController : ControllerBase
         }
         catch (LoadModelException e)
         {
-            _logger.LogError($"""
-                Error during model loading: {e.Message}
-                For CharactersController.GetById route
-                """);
+            _logger.LogError("Error during model loading: {ErrorMessage}. Route: CharactersController.GetById", e.Message);
             return StatusCode(500, "Looks like the server is having some problems; try again later.");
         }
         catch (Exception e)
@@ -97,8 +87,6 @@ public class CharactersController : ControllerBase
         {
             var characters = await _characterRepository.SearchAsync(name);
 
-            _logger.LogInformation("Successful operation");
-
             return Ok(characters);
         }
         catch (InvalidCharacterNameException e)
@@ -107,10 +95,7 @@ public class CharactersController : ControllerBase
         }
         catch (LoadModelException e)
         {
-            _logger.LogError($"""
-                Error during model loading: {e.Message}
-                For CharactersController.Search route
-                """);
+            _logger.LogError("Error during model loading: {ErrorMessage}. Route: CharactersController.Search", e.Message);
             return StatusCode(500, "Looks like the server is having some problems; try again later.");
         }
         catch (Exception e)
