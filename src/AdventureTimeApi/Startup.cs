@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace AdventureTimeApi;
 
@@ -23,11 +24,15 @@ public class Startup
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
-
-        services.AddLogging(builder =>
+        
+        services.AddSwaggerGen(swagger =>
         {
-            builder.AddConsole();
+            swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "Adventure Time API", Version = "v1" });
+        });
+
+        services.AddLogging(logger =>
+        {
+            logger.AddConsole();
         });
 
         services.AddTransient<ICharactersRepository, CharactersService>();
