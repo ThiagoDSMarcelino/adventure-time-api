@@ -26,11 +26,16 @@ public class CharactersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<CharacterDTO>>> Get([FromQuery] string? gender, [FromQuery] string? specie, [FromQuery] string sort = "name")
+    public async Task<ActionResult<List<CharacterDTO>>> Get(
+        [FromQuery] string? gender,
+        [FromQuery] string? specie,
+        [FromQuery] string sort = "name",
+        [FromQuery] int page = 0,
+        [FromQuery] int pageSize = 15)
     {
         try
         {
-            var characters = await _characterRepository.ListAsync(gender, specie, sort);
+            var characters = await _characterRepository.ListAsync(gender, specie, sort, page, pageSize);
 
             return Ok(characters);
         }

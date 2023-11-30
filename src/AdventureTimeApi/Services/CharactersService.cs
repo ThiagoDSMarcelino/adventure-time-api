@@ -33,9 +33,14 @@ public class CharactersService : ICharactersRepository
         return dto;
     }
 
-    public async Task<List<CharacterDTO>> ListAsync(string? gender, string? specie, string sort)
+    public async Task<List<CharacterDTO>> ListAsync(string? gender, string? specie, string sort, int page, int pageSize)
     {
         var (charactersData, gendersData, charactersSpeciesData, speciesData) = await LoadData();
+
+        charactersData = charactersData
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .ToList();
 
         if (specie is not null && !speciesData.Any(s => Util.CompareIgnoreCase(s.Name, specie)))
             throw new InvalidSpecieException(specie);

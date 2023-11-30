@@ -15,7 +15,7 @@ namespace AdventureTimeApi.Repositories
         /// <param name="gender">Optional filter by gender.</param>
         /// <param name="specie">Optional filter by species.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the collection of CharacterDTO.</returns>
-        Task<List<CharacterDTO>> ListAsync(string? gender, string? specie, string sort);
+        Task<List<CharacterDTO>> ListAsync(string? gender, string? specie, string sort, int page, int pageSize);
 
         /// <summary>
         /// Retrieves a character by its unique identifier.
